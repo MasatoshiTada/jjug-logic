@@ -3,7 +3,6 @@ package com.example.persistence.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e JOIN FETCH e.department ORDER BY e.empId ASC"),
     @NamedQuery(name = "Employee.findByEmpIdJoinFetchDepartment", query = "SELECT e FROM Employee e JOIN FETCH e.department WHERE e.empId = :empId"),
-    @NamedQuery(name = "Employee.findByNameJoinFetchDepartment", query = "SELECT e FROM Employee e JOIN FETCH e.department WHERE LOWER(e.name) LIKE :name OR UPPER(e.name) LIKE :name ORDER BY e.empId ASC"),
+    @NamedQuery(name = "Employee.findByNameJoinFetchDepartment", query = "SELECT e FROM Employee e JOIN FETCH e.department WHERE LOWER(e.name) LIKE LOWER(:name) OR UPPER(e.name) LIKE UPPER(:name) ORDER BY e.empId ASC"),
     @NamedQuery(name = "Employee.deleteByEmpId", query = "DELETE FROM Employee e WHERE e.empId = :empId"),
     @NamedQuery(name = "Employee.countByEmpId", query = "SELECT COUNT(e) FROM Employee e WHERE e.empId = :empId")
 })
